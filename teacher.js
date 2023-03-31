@@ -1,10 +1,8 @@
-class Teacher{
+class Teacher extends Person{
 
     constructor(name, surname, yob, students){
-        this.name = name;
-        this.surname = surname;
-        this.yob = yob;
-        this.students = students;
+        super(name, surname, yob);
+        this.students = students; //-------->underscore è una convenzione che serve per avvisare che è meglio non cambiare la variabile (_yob)
     }
 
     findBestStudent(){
@@ -21,24 +19,42 @@ class Teacher{
         return bestStudent;
     }
 
-    toString(){
-        let studente = this.findBestStudent();
-        let result = '';
-        result += `NOME: ${this.name}
-COGNOME: ${this.surname}
-ETA': ${this.calculateAge()}
-MIGLIOR STUDENTE: ${studente.name} ${studente.surname} `
-                   return result;
+//     toString(){ //Funzione standard per trasformare qualcosa che non è una stringa in una stringa
+//         let studente = this.findBestStudent();
+//         let result = '';
+//         result += `NOME: ${this.name}
+// COGNOME: ${this.surname}
+// ETA': ${this.calculateAge()}
+// MIGLIOR STUDENTE: ${studente.name} ${studente.surname} `
+//                    return result;
+//     }
+
+    // calculateAge(){
+    //     const actualDate = new Date() //SOLUZIONE PROF.
+    //         const actualYear = actualDate.getFullYear()
+    //         const age = actualYear - this.yob;
+    //         return age;
+    //     }
+
+
+    toString(){ //SOLUZIONE PROF.
+        return super.toString()
+            + "MIGLIOR STUDENTE: " + bestStudent.name + " " + bestStudent.surname + '\n'
     }
+
     //NOME: Andrea
     //COGNOME: Asioli
     //ETA': 45
     //MIGLIOR STUDENTE: Valentina Cherubini
 
-    calculateAge(){ //Trovare la età attuale del teacher
-       let currentYear = new Date().getFullYear()
-       return currentYear - this.yob; 
-    }
+    // calculateAge(){ //Trovare la età attuale del teacher
+    //    let currentYear = new Date().getFullYear()
+    //    return currentYear - this._yob; 
+    // }
+
+    
+    //return new Date().getFullYear() - this.yob; //ONE LINER
+    
     //45
 
 
